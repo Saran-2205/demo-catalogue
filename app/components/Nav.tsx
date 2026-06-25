@@ -40,8 +40,8 @@ export default function Nav({ items, siteName }: { items: NavItem[]; siteName: s
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-[clamp(1rem,2vw,1.5rem)_clamp(1.5rem,4vw,3.75rem)] transition-[background,border-color] duration-[600ms]" style={{ background: scrolled ? "var(--color-bg)" : "transparent", borderBottom: scrolled ? "1px solid var(--color-line)" : "1px solid transparent" }}>
-        <a href="#" className="font-heading text-[clamp(1.25rem,1.4vw,1.5rem)] font-[600] tracking-[-0.02em] transition-colors duration-[600ms]" style={{ color: scrolled ? "var(--color-text)" : "white" }}>
+      <header className={`fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-[clamp(1rem,2vw,1.5rem)_clamp(1.5rem,4vw,3.75rem)] transition-[background,border-color] duration-[600ms] ${scrolled ? 'bg-bg border-b border-line' : 'bg-transparent border-b border-transparent'}`}>
+        <a href="#" className={`font-heading text-[clamp(1.25rem,1.4vw,1.5rem)] font-[600] tracking-[-0.02em] transition-colors duration-[600ms] ${scrolled ? 'text-text' : 'text-white'}`}>
           {siteName}
         </a>
 
@@ -50,13 +50,12 @@ export default function Nav({ items, siteName }: { items: NavItem[]; siteName: s
             <a
               key={item.label}
               href={item.href}
-              className="text-[clamp(0.75rem,0.75vw,0.8125rem)] font-[500] tracking-[0.06em] uppercase transition-colors duration-[600ms] hover:text-accent"
-              style={{ color: scrolled ? "var(--color-text)" : "rgba(255,255,255,0.8)" }}
+              className={`text-[clamp(0.75rem,0.75vw,0.8125rem)] font-[500] tracking-[0.06em] uppercase transition-colors duration-[600ms] hover:text-accent ${scrolled ? 'text-text' : 'text-white/80'}`}
             >
               {item.label}
             </a>
           ))}
-          <a href="#contact" className="nav-cta text-[clamp(0.6875rem,0.7vw,0.75rem)] font-[600] tracking-[0.1em] uppercase px-[1.375rem] py-[0.625rem] transition-[background] duration-[600ms]" style={{ color: "#fff", background: scrolled ? "var(--color-accent)" : "rgba(255,255,255,0.15)" }}>
+          <a href="#contact" className={`nav-cta text-[clamp(0.6875rem,0.7vw,0.75rem)] font-[600] tracking-[0.1em] uppercase px-[1.375rem] py-[0.625rem] transition-[background] duration-[600ms] text-white ${scrolled ? 'bg-accent' : 'bg-white/15'}`}>
             Get in Touch
           </a>
         </nav>
@@ -68,13 +67,10 @@ export default function Nav({ items, siteName }: { items: NavItem[]; siteName: s
 
       {menuOpen && (
         <>
-          <div className="fixed inset-0 z-40 bg-black/30 backdrop-blur-[2px]" style={{ animation: "menu-fade-in 0.3s ease-out forwards" }} onClick={closeMenu} />
-          <div className="fixed top-0 right-0 bottom-0 z-50 flex flex-col justify-center px-[clamp(2rem,6vw,3rem)]"
+          <div className="fixed inset-0 z-40 bg-black/30 backdrop-blur-[2px] [animation:menu-fade-in_0.3s_ease-out_forwards]" onClick={closeMenu} />
+          <div className="fixed top-0 right-0 bottom-0 z-50 flex flex-col justify-center px-[clamp(2rem,6vw,3rem)] w-[clamp(16rem,75vw,24rem)] bg-bg [box-shadow:-0.5rem_0_2rem_rgba(0,0,0,0.08)] [animation:menu-drawer-in_0.4s_cubic-bezier(0.22,1,0.36,1)_forwards]"
             style={{
-              width: "clamp(16rem,75vw,24rem)",
               background: "radial-gradient(ellipse at 60% 30%, rgba(122,46,14,0.06) 0%, transparent 65%), var(--color-bg)",
-              boxShadow: "-0.5rem 0 2rem rgba(0,0,0,0.08)",
-              animation: "menu-drawer-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards",
             }}
           >
             <button className="absolute top-6 right-6 bg-none border-none cursor-pointer p-2 text-text transition-opacity duration-200 hover:opacity-60" onClick={closeMenu} aria-label="Close menu">
@@ -83,10 +79,9 @@ export default function Nav({ items, siteName }: { items: NavItem[]; siteName: s
             <div className="flex flex-col gap-5 pl-6">
               {items.map((item, i) => (
                 <a key={item.label} href={item.href} onClick={closeMenu}
-                  className="group relative font-display text-[clamp(1.5rem,5vw,1.75rem)] font-[400] no-underline tracking-[-0.02em] text-text flex items-center min-h-[2.75rem]"
+                  className="group relative font-display text-[clamp(1.5rem,5vw,1.75rem)] font-[400] no-underline tracking-[-0.02em] text-text flex items-center min-h-[2.75rem] opacity-0"
                   style={{
                     animation: `menu-link-slide 0.45s cubic-bezier(0.22, 1, 0.36, 1) ${0.1 + i * 0.08}s forwards`,
-                    opacity: 0,
                   }}
                 >
                   <span className="absolute -left-6 top-1/2 -translate-y-1/2 w-[0.125rem] h-0 bg-accent transition-all duration-[400ms] group-hover:h-[55%] group-active:h-[55%]" />
@@ -94,12 +89,9 @@ export default function Nav({ items, siteName }: { items: NavItem[]; siteName: s
                 </a>
               ))}
               <a href="#contact" onClick={closeMenu}
-                className="mt-2 text-[clamp(0.75rem,2.5vw,0.8125rem)] font-[600] tracking-[0.1em] uppercase px-8 py-3 flex items-center min-h-[2.75rem] transition-all duration-300 hover:translate-y-[-0.125rem]"
+                className="mt-2 text-[clamp(0.75rem,2.5vw,0.8125rem)] font-[600] tracking-[0.1em] uppercase px-8 py-3 flex items-center min-h-[2.75rem] transition-all duration-300 hover:translate-y-[-0.125rem] text-white bg-accent opacity-0"
                 style={{
-                  color: "#fff",
-                  background: "var(--color-accent)",
                   animation: `menu-link-slide 0.45s cubic-bezier(0.22, 1, 0.36, 1) ${0.1 + items.length * 0.08 + 0.08}s forwards`,
-                  opacity: 0,
                 }}
               >
                 Get in Touch

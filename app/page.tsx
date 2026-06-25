@@ -9,25 +9,24 @@ export default function Home() {
           Catalogue
         </p>
         <div className="relative z-10 text-center max-w-[48rem]">
-          <p className="m-0 text-[clamp(0.6875rem,0.6vw,0.75rem)] font-[600] tracking-[0.2em] uppercase text-accent animate-fade-up" style={{ animationDelay: "0.1s" }}>
+          <p className="m-0 text-[clamp(0.6875rem,0.6vw,0.75rem)] font-[600] tracking-[0.2em] uppercase text-accent animate-fade-up [animation-delay:0.1s]">
             Curated Collection
           </p>
-          <div className="w-8 h-[0.0625rem] bg-accent/[0.3] mx-auto my-6 animate-fade-up" style={{ animationDelay: "0.2s" }} />
-          <h1 className="font-display text-[clamp(2.8rem,7vw,5.5rem)] font-[400] leading-[1.08] tracking-[-0.03em] m-0 text-text animate-fade-up" style={{ animationDelay: "0.3s" }}>
+          <div className="w-8 h-[0.0625rem] bg-accent/[0.3] mx-auto my-6 animate-fade-up [animation-delay:0.2s]" />
+          <h1 className="font-display text-[clamp(2.8rem,7vw,5.5rem)] font-[400] leading-[1.08] tracking-[-0.03em] m-0 text-text animate-fade-up [animation-delay:0.3s]">
             Demo Catalogue
           </h1>
-          <p className="mt-6 m-0 text-[clamp(1rem,1.1vw,1.1875rem)] text-muted leading-[1.7] max-w-[36rem] mx-auto font-[400] animate-fade-up" style={{ animationDelay: "0.4s" }}>
+          <p className="mt-6 m-0 text-[clamp(1rem,1.1vw,1.1875rem)] text-muted leading-[1.7] max-w-[36rem] mx-auto font-[400] animate-fade-up [animation-delay:0.4s]">
             Curated demo templates for local businesses and creative studios &mdash; crafted with care, ready to explore.
           </p>
           <a
             href="#demos"
-            className="mt-10 inline-block bg-accent text-white px-8 py-[0.875rem] font-[600] text-[clamp(0.75rem,0.7vw,0.8125rem)] tracking-[0.12em] uppercase transition-all duration-300 hover:-translate-y-0.5 animate-fade-up"
-            style={{ animationDelay: "0.5s" }}
+            className="mt-10 inline-block bg-accent text-white px-8 py-[0.875rem] font-[600] text-[clamp(0.75rem,0.7vw,0.8125rem)] tracking-[0.12em] uppercase transition-all duration-300 hover:-translate-y-0.5 animate-fade-up [animation-delay:0.5s]"
           >
             Browse Demos
           </a>
         </div>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-up" style={{ animationDelay: "0.7s" }}>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-up [animation-delay:0.7s]">
           <span className="text-[0.625rem] tracking-[0.15em] uppercase text-muted/[0.5]">Scroll</span>
           <div className="w-[0.0625rem] h-8 bg-muted/[0.2]" />
         </div>

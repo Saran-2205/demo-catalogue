@@ -30,30 +30,30 @@ function PinterestIcon() {
 
 export default function Footer({ site }: Props) {
   return (
-    <footer className="py-[clamp(1rem,1.5vw,1.25rem)] px-[clamp(1.5rem,4vw,3.75rem)] bg-surface" style={{ borderTop: "0.0625rem solid var(--color-line)" }}>
+    <footer className="py-[clamp(1rem,1.5vw,1.25rem)] px-[clamp(1.5rem,4vw,3.75rem)] bg-surface border-t border-line">
       <div className="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
         <div className="flex items-center gap-x-3 gap-y-1 flex-wrap justify-center">
           <span className="font-heading text-[clamp(0.8125rem,0.75vw,0.9375rem)] font-[600] tracking-[-0.01em] text-text">
             {site.name}
           </span>
-          <span className="text-[clamp(0.625rem,0.6vw,0.6875rem)]" style={{ color: "rgba(0,0,0,0.25)" }}>
+          <span className="text-[clamp(0.625rem,0.6vw,0.6875rem)] text-black/25">
             &copy; {new Date().getFullYear()}
           </span>
-          <span className="w-[0.1875rem] h-[0.1875rem] rounded-full" style={{ background: "rgba(0,0,0,0.15)" }} />
-          <a href={`mailto:${site.email}`} className="relative text-[clamp(0.6875rem,0.65vw,0.75rem)] no-underline transition-colors duration-200 hover:text-accent" style={{ color: "rgba(0,0,0,0.45)" }}>
+          <span className="w-[0.1875rem] h-[0.1875rem] rounded-full bg-black/15" />
+          <a href={`mailto:${site.email}`} className="relative text-[clamp(0.6875rem,0.65vw,0.75rem)] no-underline transition-colors duration-200 hover:text-accent text-black/45">
             {site.email}
           </a>
-          <span className="w-[0.1875rem] h-[0.1875rem] rounded-full" style={{ background: "rgba(0,0,0,0.15)" }} />
-          <a href={`tel:${site.phone}`} className="relative text-[clamp(0.6875rem,0.65vw,0.75rem)] no-underline transition-colors duration-200 hover:text-accent" style={{ color: "rgba(0,0,0,0.45)" }}>
+          <span className="w-[0.1875rem] h-[0.1875rem] rounded-full bg-black/15" />
+          <a href={`tel:${site.phone}`} className="relative text-[clamp(0.6875rem,0.65vw,0.75rem)] no-underline transition-colors duration-200 hover:text-accent text-black/45">
             {site.phone}
           </a>
         </div>
 
         <div className="flex items-center gap-2">
-          <a href="#" aria-label="Instagram" className="w-[1.625rem] h-[1.625rem] flex items-center justify-center rounded-full transition-all duration-300 hover:bg-accent hover:text-white hover:scale-110" style={{ color: "rgba(0,0,0,0.3)", border: "0.0625rem solid rgba(0,0,0,0.1)" }}>
+          <a href="#" aria-label="Instagram" className="w-[1.625rem] h-[1.625rem] flex items-center justify-center rounded-full transition-all duration-300 hover:bg-accent hover:text-white hover:scale-110 text-black/30 border border-black/10">
             <InstagramIcon />
           </a>
-          <a href="#" aria-label="Pinterest" className="w-[1.625rem] h-[1.625rem] flex items-center justify-center rounded-full transition-all duration-300 hover:bg-accent hover:text-white hover:scale-110" style={{ color: "rgba(0,0,0,0.3)", border: "0.0625rem solid rgba(0,0,0,0.1)" }}>
+          <a href="#" aria-label="Pinterest" className="w-[1.625rem] h-[1.625rem] flex items-center justify-center rounded-full transition-all duration-300 hover:bg-accent hover:text-white hover:scale-110 text-black/30 border border-black/10">
             <PinterestIcon />
           </a>
         </div>

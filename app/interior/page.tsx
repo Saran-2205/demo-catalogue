@@ -272,8 +272,8 @@ export default function InteriorDemo() {
       <div aria-hidden="true" className="fixed inset-0 pointer-events-none z-1 opacity-[0.35] bg-size-[10rem_10rem]" style={{ backgroundImage: grainB64 ? `url("${grainB64}")` : "none" }} />
 
       {/* Page loader */}
-      <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-500" style={{ background: "var(--color-bg)", opacity: loaderVisible ? 1 : 0, pointerEvents: loaderVisible ? "auto" : "none" }}>
-        <p className="font-display text-[clamp(2rem,5vw,3.5rem)] font-[500] tracking-[-0.03em] text-text" style={{ animation: "loader-fade 0.8s ease-out 0.15s forwards", opacity: 0 }}>
+      <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-500 bg-bg" style={{ opacity: loaderVisible ? 1 : 0, pointerEvents: loaderVisible ? "auto" : "none" }}>
+        <p className="font-display text-[clamp(2rem,5vw,3.5rem)] font-[500] tracking-[-0.03em] text-text opacity-0 [animation:loader-fade_0.8s_ease-out_0.15s_forwards]">
           Atelier
         </p>
       </div>
@@ -282,25 +282,29 @@ export default function InteriorDemo() {
 
       {/* ─── 1. Hero ─── */}
       <section className="relative min-h-[100dvh] overflow-hidden bg-black">
-        <div className="absolute inset-0 hero-bg" />
-        <div className="absolute inset-0 hero-overlay" style={{ background: "linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)" }} />
+        <div className="absolute inset-0 w-full h-full bg-cover bg-[center_30%] bg-no-repeat [filter:brightness(0.35)_saturate(0.9)] max-md:bg-center max-md:[filter:brightness(0.45)_saturate(0.9)]"
+          style={{
+            backgroundImage: "url(https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1800&q=95)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent max-md:bg-gradient-to-t max-md:from-black/85 max-md:via-black/40 max-md:to-transparent" />
         <div className="relative z-10 min-h-[100dvh] flex flex-col justify-end p-[clamp(5rem,12vh,8.75rem)_clamp(1.5rem,4vw,3.5rem)] mx-auto max-w-[75rem]">
           <div data-reveal className="max-w-[37.5rem]">
             <p className="m-0 text-[clamp(0.5625rem,0.6vw,0.6875rem)] font-[400] tracking-[0.35em] uppercase text-white/60">
               {site.sub}
             </p>
-            <h1 className="font-display font-[500] leading-[1] text-[clamp(2.8rem,8vw,7rem)] tracking-[-0.03em] mt-[0.75rem] text-white" style={{ textShadow: "0 0.125rem 1.5rem rgba(0,0,0,0.4)" }}>
+            <h1 className="font-display font-[500] leading-[1] text-[clamp(2.8rem,8vw,7rem)] tracking-[-0.03em] mt-[0.75rem] text-white [text-shadow:0_0.125rem_1.5rem_rgba(0,0,0,0.4)]">
               {site.name}
             </h1>
             <div className="w-[3rem] h-[0.125rem] bg-accent mt-[1.5rem] mb-[1.25rem] opacity-50" />
-            <p className="m-0 text-[clamp(0.8125rem,0.9vw,0.9375rem)] max-w-[25rem] text-white font-[400] leading-[1.7]" style={{ textShadow: "0 0.0625rem 0.75rem rgba(0,0,0,0.3)" }}>
+            <p className="m-0 text-[clamp(0.8125rem,0.9vw,0.9375rem)] max-w-[25rem] text-white font-[400] leading-[1.7] [text-shadow:0_0.0625rem_0.75rem_rgba(0,0,0,0.3)]">
               {site.tagline}
             </p>
             <div className="hero-buttons flex gap-4 mt-8 flex-wrap">
-              <a href="#contact" className="inline-block px-9 py-4 text-[clamp(0.6875rem,0.7vw,0.75rem)] font-[600] text-center tracking-[0.12em] uppercase bg-accent border-none cursor-pointer transition-colors duration-300 hover:bg-[#8c3816]" style={{ color: "#fff" }}>
+              <a href="#contact" className="inline-block px-9 py-4 text-[clamp(0.6875rem,0.7vw,0.75rem)] font-[600] text-center tracking-[0.12em] uppercase bg-accent border-none cursor-pointer transition-colors duration-300 hover:bg-[#8c3816] text-white">
                 Book a consultation
               </a>
-              <a href="#projects" className="inline-block px-9 py-[0.875rem] text-[clamp(0.6875rem,0.7vw,0.75rem)] font-[500] text-center tracking-[0.12em] uppercase border border-solid cursor-pointer transition-all duration-300" style={{ borderColor: "rgba(255,255,255,0.35)", color: "#fff" }}>
+              <a href="#projects" className="inline-block px-9 py-[0.875rem] text-[clamp(0.6875rem,0.7vw,0.75rem)] font-[500] text-center tracking-[0.12em] uppercase border border-solid cursor-pointer transition-all duration-300 text-white border-white/35">
                 View our work
               </a>
             </div>
@@ -312,17 +316,17 @@ export default function InteriorDemo() {
       </section>
 
       {/* ─── 2. Trust Bar ─── */}
-      <section className="section-divider p-[clamp(4.5rem,8vw,6.25rem)_clamp(1.5rem,4vw,3.5rem)] bg-bg">
+      <section className="section-divider relative p-[clamp(4.5rem,8vw,6.25rem)_clamp(1.5rem,4vw,3.5rem)] bg-bg">
         <div className="max-w-[75rem] mx-auto">
           <div className="trust-stats grid grid-cols-4 gap-[clamp(1.5rem,3vw,3rem)] mb-[clamp(2.5rem,5vw,4rem)]" data-reveal>
             {stats.map((s, i) => (
-              <div key={i} className="text-center">
+              <div key={i} className="relative text-center">
                 <p className="m-0 font-display text-[clamp(2rem,3vw,3.4rem)] font-[500] text-accent leading-[1] tracking-[-0.02em]">{displayNums[i]}{s.num.replace(/^\d+/, "")}</p>
                 <p className="mt-2 m-0 text-[clamp(0.6875rem,0.6vw,0.75rem)] text-text font-[500] tracking-[0.08em] uppercase">{s.label}</p>
               </div>
             ))}
           </div>
-          <div className="trust-bottom flex justify-between items-center flex-wrap gap-4 pt-[clamp(1.5rem,2.5vw,2rem)]" style={{ borderTop: "0.09375rem solid var(--color-line)" }} data-reveal>
+          <div className="trust-bottom flex justify-between items-center flex-wrap gap-4 pt-[clamp(1.5rem,2.5vw,2rem)] border-t border-line" data-reveal>
             <p className="m-0 text-[clamp(0.6875rem,0.6vw,0.75rem)] text-accent font-[600] tracking-[0.06em] uppercase">
               {site.award} — {site.awardBody}
             </p>
@@ -334,18 +338,17 @@ export default function InteriorDemo() {
       </section>
 
       {/* ─── 3. About ─── */}
-      <section id="about" className="p-[clamp(5rem,12vw,8.75rem)_clamp(1.5rem,4vw,3.5rem)] bg-surface">
+      <section id="about" className="relative p-[clamp(5rem,12vw,8.75rem)_clamp(1.5rem,4vw,3.5rem)] bg-surface">
         <div className="about-grid grid grid-cols-[0.9fr_1.1fr] gap-[clamp(3rem,6vw,5rem)] items-center max-w-[75rem] mx-auto">
           <div data-reveal className="relative">
-            <div className="absolute bg-accent opacity-[0.06]" style={{ top: "clamp(1rem,2vw,1.75rem)", left: "clamp(1rem,2vw,1.75rem)", right: 0, bottom: 0 }} />
+            <div className="absolute bg-accent opacity-[0.06] right-0 bottom-0" style={{ top: "clamp(1rem,2vw,1.75rem)", left: "clamp(1rem,2vw,1.75rem)" }} />
             <Image
               src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=85"
               alt="Interior design studio workspace with material samples"
               width={800}
               height={533}
-              className="w-full h-auto block relative"
+              className="w-full h-auto block relative [filter:saturate(0.9)_brightness(0.95)]"
               loading="lazy"
-              style={{ filter: "saturate(0.9) brightness(0.95)" }}
             />
           </div>
           <div data-reveal>
@@ -382,7 +385,7 @@ export default function InteriorDemo() {
       </section>
 
       {/* ─── 4. Services ─── */}
-      <section id="services" className="bg-bg">
+      <section id="services" className="relative bg-bg">
         <div data-reveal className="p-[clamp(3.75rem,8vw,6.25rem)_clamp(1.5rem,4vw,3.5rem)_clamp(1.5rem,3vw,2.5rem)] max-w-full mx-auto">
           <div className="w-10 h-[0.125rem] bg-accent mb-[0.875rem] opacity-[0.25]" />
           <p className="m-0 text-[clamp(0.6875rem,0.6vw,0.75rem)] font-[600] tracking-[0.2em] uppercase text-accent">
@@ -436,7 +439,7 @@ export default function InteriorDemo() {
       </section>
 
       {/* ─── 5. Projects ─── */}
-      <section id="projects" className="p-0 bg-surface">
+      <section id="projects" className="relative p-0 bg-surface">
         <div data-reveal className="p-[clamp(5rem,12vw,8.75rem)_clamp(1.5rem,4vw,3.5rem)_clamp(3rem,5vw,4.5rem)] max-w-full mx-auto">
           <div className="w-10 h-[0.125rem] bg-accent mb-[0.875rem] opacity-[0.25]" />
           <p className="m-0 text-[clamp(0.6875rem,0.6vw,0.75rem)] font-[600] tracking-[0.2em] uppercase text-accent mb-4">
@@ -453,7 +456,7 @@ export default function InteriorDemo() {
         </div>
         <div className="flex flex-col">
           {projects.map((p, i) => (
-            <div key={i} data-reveal className="project-card relative overflow-hidden aspect-[21/9]" style={{ borderTop: i > 0 ? "0.0625rem solid var(--color-line)" : "none" }}>
+            <div key={i} data-reveal className={`project-card relative overflow-hidden aspect-[21/9] max-md:aspect-[4/3] ${i > 0 ? 'border-t border-line' : ''}`}>
               <Image
                 src={p.image} alt={p.title}
                 fill
@@ -461,7 +464,7 @@ export default function InteriorDemo() {
                 className="object-cover transition-transform duration-700"
                 loading="lazy"
               />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)" }} />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-[clamp(2rem,3vw,3rem)_clamp(2.5rem,4vw,4rem)]">
                 <div className="project-content max-w-[clamp(25rem,40vw,37.5rem)]">
                   <p className="m-0 text-[clamp(0.625rem,0.55vw,0.6875rem)] font-[600] tracking-[0.15em] uppercase text-white/50">
@@ -487,7 +490,7 @@ export default function InteriorDemo() {
       </section>
 
       {/* ─── 6. Process ─── */}
-      <section id="process" className="section-divider p-[clamp(5rem,12vw,8.75rem)_clamp(1.5rem,4vw,3.5rem)] bg-bg">
+      <section id="process" className="section-divider relative p-[clamp(5rem,12vw,8.75rem)_clamp(1.5rem,4vw,3.5rem)] bg-bg">
         <div className="max-w-[75rem] mx-auto">
           <div data-reveal className="mb-[clamp(3rem,5vw,4.5rem)]">
             <div className="w-10 h-[0.125rem] bg-accent mb-[0.875rem] opacity-[0.25]" />
@@ -564,7 +567,7 @@ export default function InteriorDemo() {
       </section>
 
       {/* ─── 7. Testimonials ─── */}
-      <section id="testimonials" className="p-[clamp(5rem,12vw,8.75rem)_clamp(1.5rem,4vw,3.5rem)] bg-surface">
+      <section id="testimonials" className="relative p-[clamp(5rem,12vw,8.75rem)_clamp(1.5rem,4vw,3.5rem)] bg-surface">
         <div className="max-w-[75rem] mx-auto">
           <div data-reveal className="mb-[clamp(2.5rem,5vw,4rem)]">
             <div className="w-10 h-[0.125rem] bg-accent mb-[0.875rem] opacity-[0.25]" />
@@ -581,23 +584,15 @@ export default function InteriorDemo() {
               <div className="grid grid-cols-1 rounded overflow-hidden">
                 {testimonials.map((t, i) => (
                   <div key={i}
-                    className="col-start-1 row-start-1 transition-opacity duration-300"
+                    className={`col-start-1 row-start-1 transition-opacity duration-300 rounded ${i === ti ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                     style={{
-                      opacity: i === ti ? 1 : 0,
-                      pointerEvents: i === ti ? "auto" : "none",
                       background: testimonialColors[i].bg,
-                      borderRadius: "0.25rem",
                     }}
                   >
                     <div className="relative overflow-hidden">
-                      <p className="font-display leading-[1] m-0 select-none pointer-events-none absolute"
+                      <p className="font-display m-0 select-none pointer-events-none absolute opacity-8 text-[clamp(12rem,35vw,22rem)] -top-12 -left-6 leading-[1]"
                         style={{
                           color: testimonialColors[i].accent,
-                          opacity: 0.08,
-                          fontSize: "clamp(12rem, 35vw, 22rem)",
-                          top: "-3rem",
-                          left: "-1.5rem",
-                          lineHeight: 1,
                         }}
                       >
                         &ldquo;
@@ -630,8 +625,8 @@ export default function InteriorDemo() {
               </div>
               <div className="flex items-center justify-between mt-4 px-1">
                 <button onClick={() => handleTiChange((ti - 1 + testimonials.length) % testimonials.length)}
-                  className="text-[0.625rem] tracking-[0.15em] uppercase border-none bg-transparent cursor-pointer p-0 transition-opacity duration-300 hover:opacity-100"
-                  style={{ color: `${testimonialColors[ti].accent}99`, opacity: 0.7 }}
+                  className="text-[0.625rem] tracking-[0.15em] uppercase border-none bg-transparent cursor-pointer p-0 transition-opacity duration-300 hover:opacity-100 opacity-70"
+                  style={{ color: `${testimonialColors[ti].accent}99` }}
                 >
                   ← Back
                 </button>
@@ -647,8 +642,8 @@ export default function InteriorDemo() {
                   ))}
                 </div>
                 <button onClick={() => handleTiChange((ti + 1) % testimonials.length)}
-                  className="text-[0.625rem] tracking-[0.15em] uppercase border-none bg-transparent cursor-pointer p-0 transition-opacity duration-300 hover:opacity-100"
-                  style={{ color: `${testimonialColors[ti].accent}99`, opacity: 0.7 }}
+                  className="text-[0.625rem] tracking-[0.15em] uppercase border-none bg-transparent cursor-pointer p-0 transition-opacity duration-300 hover:opacity-100 opacity-70"
+                  style={{ color: `${testimonialColors[ti].accent}99` }}
                 >
                   Next →
                 </button>
@@ -658,7 +653,7 @@ export default function InteriorDemo() {
           <div className="hidden md:block">
             <div className="testimonials-grid grid grid-cols-3 gap-[clamp(2rem,3vw,3rem)]">
               {testimonials.map((t, i) => (
-                <div key={i} className="testimonial-card relative" data-reveal style={{ borderLeft: "0.1875rem solid var(--color-accent)", padding: "clamp(1.75rem,2.5vw,2.25rem) 0 0 clamp(1.75rem,2.5vw,2.25rem)" }}>
+                <div key={i} className="testimonial-card relative border-l-[0.1875rem] border-l-accent p-[clamp(1.75rem,2.5vw,2.25rem)_0_0_clamp(1.75rem,2.5vw,2.25rem)]" data-reveal>
                   <p className="font-display text-[clamp(4rem,5vw,5.5rem)] leading-[1] m-0 text-accent opacity-10 absolute top-[clamp(-0.25rem,0vw,0.25rem)] left-1 select-none pointer-events-none">
                     &ldquo;
                   </p>
@@ -681,7 +676,7 @@ export default function InteriorDemo() {
       </section>
 
       {/* ─── 8. CTA ─── */}
-      <section id="contact" className="section-divider p-[clamp(5rem,12vw,8.75rem)_clamp(1.5rem,4vw,3.5rem)] bg-bg">
+      <section id="contact" className="section-divider relative p-[clamp(5rem,12vw,8.75rem)_clamp(1.5rem,4vw,3.5rem)] bg-bg">
         <div className="cta-bg" />
         <div className="max-w-[40rem] mx-auto text-center relative z-10">
           <div data-reveal>
@@ -696,16 +691,16 @@ export default function InteriorDemo() {
               Tell us about your space. We&rsquo;ll schedule a no-obligation consultation to explore what&rsquo;s possible.
             </p>
             <div className="cta-buttons flex gap-4 justify-center mt-10 flex-wrap">
-              <a href={`tel:${site.phone}`} className="inline-flex items-center gap-[0.625rem] px-9 py-4 text-[clamp(0.75rem,0.7vw,0.8125rem)] font-[600] tracking-[0.1em] uppercase bg-accent cursor-pointer transition-all duration-300 hover:bg-[#a03f17]" style={{ color: "#fff" }}>
+              <a href={`tel:${site.phone}`} className="inline-flex items-center gap-[0.625rem] px-9 py-4 text-[clamp(0.75rem,0.7vw,0.8125rem)] font-[600] tracking-[0.1em] uppercase bg-accent cursor-pointer transition-all duration-300 hover:bg-[#a03f17] text-white">
                 <ArrowUpRight className="cta-arrow" />
                 Call {site.phone}
               </a>
-              <a href={`mailto:${site.email}`} className="inline-flex items-center gap-[0.625rem] px-9 py-4 text-[clamp(0.75rem,0.7vw,0.8125rem)] font-[600] tracking-[0.1em] uppercase bg-transparent cursor-pointer transition-all duration-300 border text-accent hover:bg-accent hover:text-white hover:border-accent" style={{ borderColor: "rgba(122,46,14,0.25)" }}>
+              <a href={`mailto:${site.email}`} className="inline-flex items-center gap-[0.625rem] px-9 py-4 text-[clamp(0.75rem,0.7vw,0.8125rem)] font-[600] tracking-[0.1em] uppercase bg-transparent cursor-pointer transition-all duration-300 border text-accent hover:bg-accent hover:text-white hover:border-accent border-accent/25">
                 <ArrowUpRight className="cta-arrow" />
                 Send an email
               </a>
             </div>
-            <div className="mt-10 pt-6 flex justify-center gap-x-12 gap-y-1.5 flex-wrap" style={{ borderTop: "0.0625rem solid var(--color-line)" }}>
+            <div className="mt-10 pt-6 flex justify-center gap-x-12 gap-y-1.5 flex-wrap border-t border-line max-md:flex-col max-md:gap-2 max-md:text-center">
               <p className="m-0 text-[clamp(0.75rem,0.65vw,0.8125rem)] text-muted font-[400]">
                 {site.address}
               </p>
@@ -728,8 +723,6 @@ export default function InteriorDemo() {
           animation: reveal-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
-        section { position: relative; }
-
         .section-divider::before {
           content: "" !important;
           position: absolute !important;
@@ -741,109 +734,47 @@ export default function InteriorDemo() {
           opacity: 0.08 !important;
         }
 
-        .trust-stats > div { position: relative; }
-
-        .hero-buttons a {
-          text-align: center;
-          transition: background 0.3s, border-color 0.3s, color 0.3s;
-        }
         .cta-buttons a {
-          text-align: center;
           transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
         }
-        .cta-buttons a:hover {
-          transform: translateY(-0.25rem);
-        }
-        .cta-buttons a:first-child:hover {
-          box-shadow: 0 0.75rem 2rem rgba(122,46,14,0.35);
-        }
-        .cta-buttons a:last-child:hover {
-          box-shadow: 0 0.75rem 2rem rgba(122,46,14,0.12);
-        }
+        .cta-buttons a:hover { transform: translateY(-0.25rem); }
+        .cta-buttons a:first-child:hover { box-shadow: 0 0.75rem 2rem rgba(122,46,14,0.35); }
+        .cta-buttons a:last-child:hover { box-shadow: 0 0.75rem 2rem rgba(122,46,14,0.12); }
         .cta-arrow { transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
         .cta-buttons a:hover .cta-arrow { transform: translate(0.125rem, -0.125rem); }
 
         .testimonials-grid > div:nth-child(2) { transition-delay: 0.1s; }
         .testimonials-grid > div:nth-child(3) { transition-delay: 0.2s; }
-
         .testimonials-grid > div { transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
         .testimonials-grid > div:hover { transform: translateY(-0.25rem); }
+        .testimonials-grid > div > * { opacity: 0; transform: translateY(0.75rem); }
+        .testimonials-grid > div.is-visible > :first-child { animation: quote-entrance 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards; }
+        .testimonials-grid > div.is-visible > :nth-child(2) { animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards; }
+        .testimonials-grid > div.is-visible > :nth-child(3) { animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards; }
 
-        .testimonials-grid > div > * {
-          opacity: 0;
-          transform: translateY(0.75rem);
-        }
-        .testimonials-grid > div.is-visible > :first-child {
-          animation: quote-entrance 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
-        }
-        .testimonials-grid > div.is-visible > :nth-child(2) {
-          animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
-        }
-        .testimonials-grid > div.is-visible > :nth-child(3) {
-          animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
-        }
-        @keyframes quote-entrance {
-          0% { opacity: 0; transform: scale(0.3) translateY(0.75rem); }
-          55% { opacity: 0.25; transform: scale(1.12) translateY(0); }
-          100% { opacity: 0.1; transform: scale(1) translateY(0); }
-        }
-        @keyframes fade-up {
-          0% { opacity: 0; transform: translateY(0.75rem); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-
-        #contact .cta-bg {
-          position: absolute; inset: 0; pointer-events: none; overflow: hidden;
-        }
+        #contact .cta-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
         #contact .cta-bg::before {
           content: ""; position: absolute; inset: -50%;
           background: radial-gradient(ellipse 40% 30% at 50% 80%, rgba(159,69,27,0.05) 0%, transparent 60%);
           animation: breathe 6s ease-in-out infinite alternate;
         }
-        @keyframes breathe {
-          0% { transform: scale(1) translate(0, 0); opacity: 0.6; }
-          100% { transform: scale(1.15) translate(2%, -3%); opacity: 1; }
-        }
 
         #contact [data-reveal] { transition-duration: 1.4s; }
-        #contact [data-reveal] > * {
-          opacity: 0;
-          transform: translateY(1.25rem);
-        }
-        #contact [data-reveal].is-visible > :nth-child(2) {
-          animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
-        }
-        #contact [data-reveal].is-visible > :nth-child(3) {
-          animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
-        }
-        #contact [data-reveal].is-visible > :nth-child(4) {
-          animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
-        }
-        #contact [data-reveal].is-visible > :nth-child(5) {
-          animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
-        }
-        #contact [data-reveal].is-visible > :nth-child(6) {
-          animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
-        }
+        #contact [data-reveal] > * { opacity: 0; transform: translateY(1.25rem); }
+        #contact [data-reveal].is-visible > :nth-child(2) { animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards; }
+        #contact [data-reveal].is-visible > :nth-child(3) { animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards; }
+        #contact [data-reveal].is-visible > :nth-child(4) { animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards; }
+        #contact [data-reveal].is-visible > :nth-child(5) { animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards; }
+        #contact [data-reveal].is-visible > :nth-child(6) { animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards; }
 
         .project-card .project-desc { transform: translateY(0.5rem); transition-property: opacity, transform; transition-duration: 1s; }
         .project-card.is-visible img { transform: scale(1.04); transition-duration: 1s; transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
         .project-card.is-visible .project-desc { opacity: 1; transform: translateY(0); max-height: 30rem; transition-duration: 1s; transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
 
-        .hero-bg {
-          background-image: url("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1800&q=95");
-          background-size: cover;
-          background-position: center 30%;
-          background-repeat: no-repeat;
-          filter: brightness(0.35) saturate(0.9);
-          width: 100%; height: 100%;
-        }
-
         @media (max-width: 48rem) {
           .testimonials-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
           .trust-stats { grid-template-columns: repeat(2, 1fr) !important; gap: 2rem !important; }
-          .about-grid { grid-template-columns: 1fr !important; }
-          .about-grid { gap: 2rem !important; }
+          .about-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
           .about-grid > div:first-child img { max-height: 16rem; width: 100%; object-fit: cover; }
           .trust-bottom { flex-direction: column !important; align-items: flex-start !important; }
           .hero-buttons { flex-direction: column !important; }
@@ -865,18 +796,12 @@ export default function InteriorDemo() {
           [data-reveal].is-visible { animation: none; }
           .testimonials-grid > div > *, #contact [data-reveal] > * { opacity: 1; transform: none; transition: none; }
           .testimonials-grid > div:hover { transform: none; }
-
           .project-card { aspect-ratio: 4/3 !important; }
           .project-card .project-content { max-width: 100% !important; }
           .project-card .project-desc { display: none !important; }
-
           #contact .cta-bg { display: none !important; }
           #contact .cta-buttons + div { flex-direction: column !important; gap: 0.5rem !important; text-align: center !important; }
-
           .cta-buttons a { min-height: 3rem !important; }
-          .mobile-menu-btn { min-height: 2.75rem; min-width: 2.75rem; }
-          .hero-overlay { background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%) !important; }
-          .hero-bg { background-image: url("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&h=1200&fit=crop&q=85") !important; background-position: center !important; background-size: cover !important; filter: brightness(0.45) saturate(0.9) !important; }
         }
         @media (max-width: 36rem) {
           .theme-interior section { padding-left: 1rem !important; padding-right: 1rem !important; }
@@ -887,22 +812,6 @@ export default function InteriorDemo() {
           .testimonials-grid > div > *, #contact [data-reveal] > * { opacity: 1; transform: none; transition: none; }
           img { transition: none !important; }
           .testimonials-grid > div:hover { transform: none; }
-        }
-        @keyframes reveal-in {
-          0% { opacity: 0; transform: translateY(2rem); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes entry-up {
-          0% { opacity: 0; transform: translateY(1rem); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fade-in {
-          0% { opacity: 0; }
-          100% { opacity: 0.3; }
-        }
-        @keyframes loader-fade {
-          0% { opacity: 0; transform: translateY(0.5rem); }
-          100% { opacity: 1; transform: translateY(0); }
         }
       `}</style>
     </div>
