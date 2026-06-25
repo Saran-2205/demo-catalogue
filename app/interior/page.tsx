@@ -501,13 +501,21 @@ export default function InteriorDemo() {
               Our Process
             </h2>
           </div>
-          <div className="relative pl-[1.5rem] md:pl-0">
+          <div className="relative pl-10 md:pl-0">
+            {/* Background track line (always visible on mobile) */}
             {!prefersReducedMotion && (
-              <div className="absolute w-[0.0625rem] bg-accent opacity-[0.25] bottom-0 block md:hidden"
+              <div className="absolute w-0.5 bg-accent/10 block md:hidden"
+                style={{ left: "1.1875rem", top: "0.625rem", bottom: "0.625rem" }}
+              />
+            )}
+            {/* Progress line (fills as steps become visible) */}
+            {!prefersReducedMotion && (
+              <div className="absolute w-0.5 bg-accent/45 block md:hidden"
                 style={{
-                  left: "0.625rem",
+                  left: "1.1875rem",
+                  top: "0.625rem",
                   height: visibleSteps.length > 0 ? `${(visibleSteps.length / process.length) * 100}%` : "0",
-                  transition: "height 1.2s cubic-bezier(0.22, 1, 0.36, 1)",
+                  transition: "height 1s cubic-bezier(0.22, 1, 0.36, 1)",
                 }}
               />
             )}
@@ -516,44 +524,45 @@ export default function InteriorDemo() {
                 const stepVisible = visibleSteps.includes(i);
                 const animOff = prefersReducedMotion || !stepVisible;
                 return (
-                  <div key={i} data-step={i} className="process-step relative">
-                    <div className="absolute w-[0.625rem] h-[0.625rem] rounded-full bg-accent block md:hidden"
+                  <div key={i} data-step={i} className={`process-step relative ${stepVisible ? 'is-visible' : ''}`}>
+                    {/* Dot (mobile only) */}
+                    <div className="absolute w-2.5 h-2.5 rounded-full block md:hidden"
                       style={{
-                        left: "-0.875rem",
+                        left: "-1.5625rem",
                         top: "0.25rem",
-                        opacity: animOff ? "0.2" : "1",
-                        animation: animOff ? "none" : "dot-pulse-mobile 0.9s 0.3s forwards",
+                        background: animOff ? "transparent" : "var(--color-accent)",
+                        border: animOff ? "0.125rem solid var(--color-accent)" : "none",
+                        transition: "background 0.5s, border 0.5s",
                       }}
                     />
                     <p className="m-0 text-[clamp(0.6875rem,0.6vw,0.75rem)] font-[600] tracking-[0.15em] text-accent"
                       style={{
-                        opacity: animOff ? "1" : "0",
-                        transform: animOff ? "none" : "translateY(1rem)",
-                        animation: animOff ? "none" : `entry-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards`,
+                        opacity: animOff ? "0.2" : "1",
+                        transition: "opacity 0.6s 0.1s",
                       }}
                     >
                       {step.number}
                     </p>
                     <h3 className="font-display text-[clamp(1.3rem,1.6vw,1.8rem)] font-[500] mt-2 text-text tracking-[-0.02em]"
                       style={{
-                        opacity: animOff ? "1" : "0",
-                        transform: animOff ? "none" : "translateY(1rem)",
-                        animation: animOff ? "none" : `entry-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards`,
+                        opacity: animOff ? "0" : "1",
+                        transform: animOff ? "translateY(1rem)" : "translateY(0)",
+                        transition: "opacity 0.6s 0.2s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s",
                       }}
                     >
                       {step.title}
                     </h3>
                     <div className="w-8 h-[0.0625rem] bg-accent opacity-[0.3] mt-[0.875rem] mb-[0.75rem] hidden md:block"
                       style={{
-                        animation: animOff ? "none" : `fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards`,
-                        opacity: animOff ? "0.3" : "0",
+                        opacity: animOff ? "0" : "0.3",
+                        transition: "opacity 0.5s 0.7s",
                       }}
                     />
                     <p className="mt-4 md:mt-0 m-0 text-[clamp(0.875rem,0.8vw,0.9375rem)] text-muted leading-[1.7] font-[400]"
                       style={{
-                        opacity: animOff ? "1" : "0",
-                        transform: animOff ? "none" : "translateY(1rem)",
-                        animation: animOff ? "none" : `entry-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.65s forwards`,
+                        opacity: animOff ? "0" : "1",
+                        transform: animOff ? "translateY(1rem)" : "translateY(0)",
+                        transition: "opacity 0.6s 0.35s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s",
                       }}
                     >
                       {step.desc}
