@@ -578,48 +578,55 @@ export default function InteriorDemo() {
 
           <div className="block md:hidden">
             <div>
-              <div key={ti} className="relative overflow-hidden"
-                style={{
-                  background: testimonialColors[ti].bg,
-                  borderRadius: "0.25rem",
-                  minHeight: "16rem",
-                  animation: "entry-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards",
-                }}
-              >
-                <p className="font-display leading-[1] m-0 select-none pointer-events-none absolute"
-                  style={{
-                    color: testimonialColors[ti].accent,
-                    opacity: 0.08,
-                    fontSize: "clamp(12rem, 35vw, 22rem)",
-                    top: "-3rem",
-                    left: "-1.5rem",
-                    lineHeight: 1,
-                  }}
-                >
-                  &ldquo;
-                </p>
-                <div className="absolute inset-0" style={{
-                  background: `radial-gradient(ellipse at 25% 35%, ${testimonialColors[ti].accent}18 0%, transparent 60%)`,
-                }} />
-                <div className="relative z-10 flex flex-col justify-between min-h-[16rem] px-6 py-7">
-                  <div>
-                    <p className="m-0 text-[1rem] text-text leading-[1.7] font-[400]">
-                      {testimonials[ti].quote}
-                    </p>
+              <div className="grid grid-cols-1 rounded overflow-hidden">
+                {testimonials.map((t, i) => (
+                  <div key={i}
+                    className="col-start-1 row-start-1 transition-opacity duration-300"
+                    style={{
+                      opacity: i === ti ? 1 : 0,
+                      pointerEvents: i === ti ? "auto" : "none",
+                      background: testimonialColors[i].bg,
+                      borderRadius: "0.25rem",
+                    }}
+                  >
+                    <div className="relative overflow-hidden">
+                      <p className="font-display leading-[1] m-0 select-none pointer-events-none absolute"
+                        style={{
+                          color: testimonialColors[i].accent,
+                          opacity: 0.08,
+                          fontSize: "clamp(12rem, 35vw, 22rem)",
+                          top: "-3rem",
+                          left: "-1.5rem",
+                          lineHeight: 1,
+                        }}
+                      >
+                        &ldquo;
+                      </p>
+                      <div className="absolute inset-0" style={{
+                        background: `radial-gradient(ellipse at 25% 35%, ${testimonialColors[i].accent}18 0%, transparent 60%)`,
+                      }} />
+                      <div className="relative z-10 flex flex-col justify-between px-6 py-7">
+                        <div>
+                          <p className="m-0 text-[1rem] text-text leading-[1.7] font-[400]">
+                            {t.quote}
+                          </p>
+                        </div>
+                        <div className="mt-6 pt-4" style={{
+                          borderTop: `0.0625rem solid ${testimonialColors[i].accent}25`,
+                        }}>
+                          <p className="m-0 text-[0.875rem] font-[600] text-text tracking-[0.02em]">
+                            {t.name}
+                          </p>
+                          <p className="mt-0.5 m-0 text-[0.75rem] font-[400] tracking-[0.02em]"
+                            style={{ color: testimonialColors[i].accent }}
+                          >
+                            {t.project}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="mt-6 pt-4" style={{
-                    borderTop: `0.0625rem solid ${testimonialColors[ti].accent}25`,
-                  }}>
-                    <p className="m-0 text-[0.875rem] font-[600] text-text tracking-[0.02em]">
-                      {testimonials[ti].name}
-                    </p>
-                    <p className="mt-0.5 m-0 text-[0.75rem] font-[400] tracking-[0.02em]"
-                      style={{ color: testimonialColors[ti].accent }}
-                    >
-                      {testimonials[ti].project}
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
               <div className="flex items-center justify-between mt-4 px-1">
                 <button onClick={() => handleTiChange((ti - 1 + testimonials.length) % testimonials.length)}
